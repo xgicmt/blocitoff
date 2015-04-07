@@ -12,9 +12,9 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		redirect_to "#sign_up", :notice => "Signed Up"
+  		redirect_to root_path, :notice => "Signed Up"
   	else
-  		redirect_to root_url, :notice => "Failed"
+  		redirect_to root_path, :notice => "Failed"
   	end
   end
 
@@ -22,10 +22,15 @@ class UsersController < ApplicationController
 
   end
 
+
+  def destroy
+
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
 #    params.require(:user).permit(:email, :password_hash, :password_salt)
   end
 

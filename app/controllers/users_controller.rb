@@ -12,26 +12,27 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		redirect_to root_path, :notice => "Signed Up"
+  		flash[:success] = "Welcome to blocitoff"
+  		redirect_to @user
   	else
-  		redirect_to root_path, :notice => "Failed"
+  		render 'new'
   	end
   end
 
   def show
-
+    @user = User.find(params[:id])
+    @current_user = @user
   end
 
 
   def destroy
 
   end
-
+################################ GOING PRIVATE ##########################################
   private
 
-  def user_params
-    params.require(:user).permit(:username, :email, :password, :password_confirmation)
-#    params.require(:user).permit(:email, :password_hash, :password_salt)
-  end
+    def user_params
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+    end
 
 end

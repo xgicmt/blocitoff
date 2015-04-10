@@ -4,7 +4,7 @@
 <a href="#" >Add List Item</a>
  <%= form_for @tasks, method: :post do |f| %>
       <%= f.text_field :description %>
-      <%= f.hidden_field :user_id, :value => @current_user.id %>
+      <%= f.hidden_field :user_id, :value => @user.id %>
  <%= f.submit "Add Todo", class: 'btn btn-primary' %>
   <% end %>
 
@@ -18,8 +18,10 @@
      <%= days_left(task) %>
      <span><%= 'Day'.pluralize(days_left(task)) %> Left</span>
      </div>
-     <div class="deleteTask"><%= link_to "X", task_path(task.id), method: :delete, remote: true %></div>
+     <div class="deleteTask"><%= link_to "X", task_path(task.id), method: :delete, data: {confirm: "Another Goal Completed? Delete that sucker!"}, remote: true %></div>
      </div>
      <% end %>   
   </ul>
 </div>
+<p>User ID for page is<%= @user.id %>
+<p>User ID for current_user is <%=  session[:user_id] %>

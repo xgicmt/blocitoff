@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  	#attr_accessor :email, :password, :password_confirmation
+
 	def index
 
 	end
@@ -22,8 +22,11 @@ class UsersController < ApplicationController
   def show
     @tasks = Task.new
     @user = User.find(params[:id])
-    @current_user = @user
-    @task = @user.tasks.find_by(params[:id])
+   # @current_user = @user
+    @task = @user.tasks
+    if current_user != @user
+      redirect_to current_user, alert: "Stop poking around in my URL"
+    end
     #@task = @current_user.tasks
   end
 

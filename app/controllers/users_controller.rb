@@ -20,14 +20,18 @@ class UsersController < ApplicationController
   end
 
   def show
+    @tasks = Task.new
     @user = User.find(params[:id])
     @current_user = @user
+    @task = @user.tasks.find_by(params[:id])
+    #@task = @current_user.tasks
   end
 
 
   def destroy
 
   end
+
 ################################ GOING PRIVATE ##########################################
   private
 

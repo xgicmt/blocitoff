@@ -1,3 +1,4 @@
+<div class="content">
 <h1>Log in </h1>
 
 <%= form_for(:session, url: login_path) do |f| %>
@@ -7,6 +8,11 @@
   <p><%= f.label :password %><br>
   <%= f.password_field :password, class: 'form-control' %>
 </p>
-  <%= f.submit "Log in", class: 'btn btn-primary' %>
+    <%= f.label :remember_me, class: 'checkbox inline' do %>
+      <%= f.check_box :remember_me %>
+      <small>Remember me on this computer</small>
+    <% end %>
+ <p> <%= f.submit "Log in", class: 'btn btn-primary' %></p>
   <% end %>
   <p>New User? <%= link_to "Sign up now!", new_user_path%></p>
+</div>

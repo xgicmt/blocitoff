@@ -11,16 +11,15 @@ helper_method :days_left, :zones
   	  target = task.created_at + 8.days
       ((target - Time.now)/(3600*24)).to_i
     end
-
     def zones(task)
       if days_left(task) <= 0
         "<div style='display:none'>".html_safe
       elsif days_left(task) <= 2 
-      	"<div class ='toDoList redZone'> ".html_safe
+      	"<div class ='toDoList redZone' ".html_safe
       elsif days_left(task)  <= 4
-        "<div class = 'toDoList yellowZone'>".html_safe
+        "<div class = 'toDoList yellowZone' ".html_safe
      else
-     	"<div class = 'toDoList greenZone'>".html_safe
+     	"<div class = 'toDoList greenZone' ".html_safe
       end
     end
 end

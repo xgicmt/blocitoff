@@ -13,9 +13,13 @@ def destroy
   @task = Task.find(params[:id])
   if @task.destroy
   	flash[:success] = "Task completed!"
-  	redirect_to request.referer
   else
   	flash[:error] = "Something broke"
+  end
+
+  respond_to do |format|
+  	format.html
+  	format.js
   end
 end
 

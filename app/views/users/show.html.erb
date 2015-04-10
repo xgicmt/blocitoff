@@ -11,14 +11,14 @@
 <h2>Things to get Done!!</h2>
      <% @user.tasks.each do |task| %>
      <%= zones(task) %> 
-     <div class="taskName">
+     <div class="taskName" id="<%= task.id %>">
      <%= task.description %>
      </div>
      <div class='daysLeft'>
      <%= days_left(task) %>
      <span><%= 'Day'.pluralize(days_left(task)) %> Left</span>
      </div>
-     <div class="deleteTask"><%= link_to "X", [@task], method: :delete %></div>
+     <div class="deleteTask"><%= link_to "X", task_path(task.id), method: :delete %></div>
      </div>
      <% end %>   
   </ul>

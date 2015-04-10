@@ -10,10 +10,10 @@ class TasksController < ApplicationController
   end
 
 def destroy
-
-  @task = tasks.find(params[:id])
+  @task = Task.find(params[:id])
   if @task.destroy
   	flash[:success] = "Task completed!"
+  	redirect_to request.referer
   else
   	flash[:error] = "Something broke"
   end

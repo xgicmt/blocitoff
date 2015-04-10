@@ -8,12 +8,14 @@ class ApplicationController < ActionController::Base
 helper_method :days_left, :zones
 
     def days_left(task)
-  	  target = task.created_at + 7.days
+  	  target = task.created_at + 8.days
       ((target - Time.now)/(3600*24)).to_i
     end
 
     def zones(task)
-      if days_left(task) <= 2 
+      if days_left(task) <= 0
+        "<div style='display:none'>".html_safe
+      elsif days_left(task) <= 2 
       	"<div class ='toDoList redZone'> ".html_safe
       elsif days_left(task)  <= 4
         "<div class = 'toDoList yellowZone'>".html_safe
